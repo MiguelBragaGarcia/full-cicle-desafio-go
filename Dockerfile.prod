@@ -1,0 +1,5 @@
+FROM scratch
+
+copy ./index .
+
+CMD ["./index"]
