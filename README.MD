@@ -1,24 +1,10 @@
 # Gerar a imagem
-## Pré-requisitos
-Executar o seguinte comando para compilar o programa para linux que é o que está executando no container.
-
-OBS: Para processadores não ARM utilizar o GOARCH=amd64.
+É necessário executar o seguinte comando.
 <pre>
-    env GOOS=linux GOARCH=arm go build -v ./index.go
+    docker build -t l0ordz/go . -f Dockerfile
 </pre>
-
-Executar o seguinte comando para criar a imagem docker.
-<pre>
-    docker build -t l0ordz/go:prod . -f Dockerfile.prod
-</pre>
-
-Executar o seguinde comando para criar um container com a imagem gerada.
-<pre>
-    docker run l0ordz/go:prod
-</pre>
-
-# Executar a imagem sem precisar buildar
+# Executar a imagem no docker hub
 Precisamos baixar  e executar o projeto. Com o seguinte comando.
 <pre>
-    docker run l0ordz/go:prod
+    docker run --name container-go l0ordz/go
 </pre>
