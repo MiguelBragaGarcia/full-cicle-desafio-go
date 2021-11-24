@@ -1,11 +1,18 @@
-FROM golang:1.12-alpine
+FROM golang:alpine as builder
 
-workdir /usr/src/app
+WORKDIR /usr/src/app
 
-COPY . .
+COPY ./index.go .
 
 RUN go build ./index.go
 
-expose 8080
+# Utilizando multistaging para gerar a imagem
+FROM scratch
 
-cmd ["./index"]
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app .
+
+EXPOSE 8080
+
+CMD ["./index"]
